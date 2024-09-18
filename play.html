@@ -91,6 +91,11 @@
           consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation
         </p>
+        <!-- Timer and Play Button -->
+        <div>
+          <button id="startButton" onclick="startTimer()">Play</button>
+          <div id="timer" style="font-size: 24px; padding: 10px;">0m 0s</div>
+        </div>
       </div>
       <div class="work_container layout_padding2">
         <div class="box b-1">
@@ -111,7 +116,35 @@
       </div>
     </div>
   </section>
+  <script>
+    let timerInterval;
 
+    function startTimer() {
+      // Disable the start button
+      document.getElementById('startButton').disabled = true;
+
+      // Set start time if not already set
+      if (!localStorage.getItem('startTime')) {
+        localStorage.setItem('startTime', Date.now());
+      }
+
+      // Start the timer
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+      const startTime = localStorage.getItem('startTime');
+      const currentTime = Date.now();
+      const elapsedTime = currentTime - startTime;
+
+      // Convert to minutes and seconds
+      const minutes = Math.floor(elapsedTime / 60000);
+      const seconds = Math.floor((elapsedTime % 60000) / 1000);
+
+      // Display the timer
+      document.getElementById('timer').innerText = `${minutes}m ${seconds}s`;
+    }
+  </script>
   <!-- end work section -->
 
   <!-- info section -->

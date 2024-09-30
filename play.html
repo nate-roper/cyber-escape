@@ -27,6 +27,33 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    .play-now-button {
+      background-color: red;
+      color: white;
+      font-size: 30px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 10px;
+      text-align: center;
+      display: inline-block;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .play-now-button:hover {
+      background-color: darkred;
+    }
+
+    .centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+      flex-direction: column;
+    }
+  </style>
 </head>
 
 <body class="sub_page">
@@ -85,67 +112,16 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          CREATIVE WORKS
+          Start the Challenge
         </h2>
         <p>
           consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation
         </p>
-        <!-- Timer and Play Button -->
-        <div>
-          <button id="startButton" onclick="startTimer()">Play</button>
-          <div id="timer" style="font-size: 24px; padding: 10px;">0m 0s</div>
+        <div class="container centered-container">
+          <a href="userPage.html" target="_blank" class="play-now-button">Play Now</a>
         </div>
-      </div>
-      <div class="work_container layout_padding2">
-        <div class="box b-1">
-          <img src="images/w-1.png" alt="">
-        </div>
-        <div class="box b-2">
-          <img src="images/w-2.png" alt="">
-
-        </div>
-        <div class="box b-3">
-          <img src="images/w-3.png" alt="">
-
-        </div>
-        <div class="box b-4">
-          <img src="images/w-4.png" alt="">
-
-        </div>
-      </div>
-    </div>
   </section>
-  <script>
-    let timerInterval;
-
-    function startTimer() {
-      // Disable the start button
-      document.getElementById('startButton').disabled = true;
-
-      // Set start time if not already set
-      if (!localStorage.getItem('startTime')) {
-        localStorage.setItem('startTime', Date.now());
-      }
-
-      // Start the timer
-      timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    function updateTimer() {
-      const startTime = localStorage.getItem('startTime');
-      const currentTime = Date.now();
-      const elapsedTime = currentTime - startTime;
-
-      // Convert to minutes and seconds
-      const minutes = Math.floor(elapsedTime / 60000);
-      const seconds = Math.floor((elapsedTime % 60000) / 1000);
-
-      // Display the timer
-      document.getElementById('timer').innerText = `${minutes}m ${seconds}s`;
-    }
-  </script>
-  <!-- end work section -->
 
   <!-- info section -->
   <section class="info_section ">

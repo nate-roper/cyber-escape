@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Desktop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .desktop {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .user {
+            width: 150px;
+            height: 150px;
+            background-color: #87CEEB;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .user:hover {
+            background-color: #4682B4;
+        }
+        .user-name {
+            color: white;
+            font-size: 20px;
+        }
+        .login, .security {
+            display: none;
+            margin-top: 30px;
+        }
+        .new-page {
+            display: none;
+            font-size: 24px;
+            color: green;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Mock Desktop</h1>
+
+<div class="desktop">
+    <div class="user" onclick="openLogin('user1')">
+        <div class="user-name">Jaime</div>
+    </div>
+    <div class="user" onclick="openLogin('user2')">
+        <div class="user-name">Alex</div>
+    </div>
+    <div class="user" onclick="openLogin('user3')">
+        <div class="user-name">Sam</div>
+    </div>
+</div>
+
+<div id="login-user1" class="login">
+    <h2>Jaime - Sign In</h2>
+    <input type="text" id="username1" placeholder="Username"><br>
+    <input type="password" id="password1" placeholder="Password"><br>
+    <button onclick="validateLogin('user1')">Login</button><br>
+    <button onclick="forgotPassword('user1')">Forgot Password</button>
+</div>
+
+<div id="login-user2" class="login">
+    <h2>Alex - Sign In</h2>
+    <input type="text" id="username2" placeholder="Username"><br>
+    <input type="password" id="password2" placeholder="Password"><br>
+    <button onclick="validateLogin('user2')">Login</button><br>
+    <button onclick="forgotPassword('user2')">Forgot Password</button>
+</div>
+
+<div id="login-user3" class="login">
+    <h2>Sam - Sign In</h2>
+    <input type="text" id="username3" placeholder="Username"><br>
+    <input type="password" id="password3" placeholder="Password"><br>
+    <button onclick="validateLogin('user3')">Login</button><br>
+    <button onclick="forgotPassword('user3')">Forgot Password</button>
+</div>
+
+<!-- Security Questions -->
+<div id="security-user1" class="security">
+    <h2>Jaime - Security Questions</h2>
+    <input type="text" id="secq1-user1" placeholder="What was the make and model of your first car?"><br>
+    <input type="text" id="secq2-user1" placeholder="What is the name of your favorite pet?"><br>
+    <input type="text" id="secq3-user1" placeholder="What was the name of the city in which you were born?"><br>
+    <button onclick="validateSecurity('user1')">Submit</button>
+</div>
+
+<div id="security-user2" class="security">
+    <h2>Alex - Security Questions</h2>
+    <input type="text" id="secq1-user2" placeholder="What was the make and model of your first car?"><br>
+    <input type="text" id="secq2-user2" placeholder="What was the name of the street you grew up on?"><br>
+    <input type="text" id="secq3-user2" placeholder="What was the name of the city in which you were born?"><br>
+    <button onclick="validateSecurity('user2')">Submit</button>
+</div>
+
+<div id="security-user3" class="security">
+    <h2>Sam - Security Questions</h2>
+    <input type="text" id="secq1-user3" placeholder="What was the make and model of your first car?"><br>
+    <input type="text" id="secq2-user3" placeholder="What was the name of your first childhood friend?"><br>
+    <input type="text" id="secq3-user3" placeholder="What was the name of the city in which you were born?"><br>
+    <button onclick="validateSecurity('user3')">Submit</button>
+</div>
+
+<!-- New Page After Success -->
+<div class="new-page" id="new-page">
+    <h2>Welcome to the New Page!</h2>
+</div>
+
+<script>
+    function openLogin(user) {
+        document.querySelectorAll('.login, .security').forEach(el => el.style.display = 'none');
+        document.getElementById('login-' + user).style.display = 'block';
+    }
+
+    function forgotPassword(user) {
+        document.querySelectorAll('.login').forEach(el => el.style.display = 'none');
+        document.getElementById('security-' + user).style.display = 'block';
+    }
+
+    function validateLogin(user) {
+        let username = document.getElementById('username' + user.slice(-1)).value;
+        let password = document.getElementById('password' + user.slice(-1)).value;
+
+        if (username === "user" + user.slice(-1) && password === "password") {
+            showNewPage();
+        } else {
+            alert('Incorrect Username or Password');
+        }
+    }
+
+    function validateSecurity(user) {
+        let secq1 = document.getElementById('secq1-' + user).value;
+        let secq2 = document.getElementById('secq2-' + user).value;
+        let secq3 = document.getElementById('secq3-' + user).value;
+
+        if (secq1 === "answer1" && secq2 === "answer2" && secq3 === "answer3") {
+            showNewPage();
+        } else {
+            alert('Incorrect Answers');
+        }
+    }
+
+    function showNewPage() {
+        document.querySelectorAll('.login, .security').forEach(el => el.style.display = 'none');
+        document.getElementById('new-page').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

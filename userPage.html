@@ -119,10 +119,6 @@
     <button onclick="validateSecurity('user3')">Submit</button>
 </div>
 
-<!-- New Page After Success -->
-<div class="new-page" id="new-page">
-    <h2>Welcome to the New Page!</h2>
-</div>
 
 <script>
     function openLogin(user) {
@@ -139,7 +135,12 @@
         let username = document.getElementById('username' + user.slice(-1)).value;
         let password = document.getElementById('password' + user.slice(-1)).value;
 
-        if (username === "user" + user.slice(-1) && password === "password") {
+        if (
+            (user === 'user1' && username === 'j.graves2' && password === 'bastion123') ||
+            (user === 'user2' && username === 'a.richardson1' && password === 'mittens10') ||
+            (user === 'user3' && username === 's.carters7' && password === '123456')
+        ) {
+            alert('Login successful for ' + username + '!');
             showNewPage();
         } else {
             alert('Incorrect Username or Password');
@@ -147,13 +148,22 @@
     }
 
     function validateSecurity(user) {
-        let secq1 = document.getElementById('secq1-' + user).value;
-        let secq2 = document.getElementById('secq2-' + user).value;
-        let secq3 = document.getElementById('secq3-' + user).value;
+        let secq1 = document.getElementById('secq1-' + user).value.toLowerCase();
+        let secq2 = document.getElementById('secq2-' + user).value.toLowerCase();
+        let secq3 = document.getElementById('secq3-' + user).value.toLowerCase();
 
-        if (secq1 === "answer1" && secq2 === "answer2" && secq3 === "answer3") {
+        if (user === 'user1' && secq1 === 'subaru impreza' && secq2 === 'kobe' && secq3 === 'cleveland') {
+            alert('Here is your temporary password: bastion123');
             showNewPage();
-        } else {
+        } else if (user === 'user2' && secq1 === 'honda crv' && secq2 === 'castle street' && secq3 === 'london') {
+            alert('Security questions answered correctly! Here is your password: mittens10')
+            showNewPage();
+        } else if (user == 'user3' && secq1 === 'chevy cruze' && secq2 === 'ryan hansen' && secq3 === 'seattle') {
+            alert('Security questions answered correctly! Here is your password: 123456')
+            showNewPage();
+        }
+        
+        else {
             alert('Incorrect Answers');
         }
     }

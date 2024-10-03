@@ -3,9 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Email - Mock Desktop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #d3d3d3;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            background-color: #0078d4;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header .account {
+            font-size: 16px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Email List */
+        .email-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .email-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .email-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        .email-item h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .email-item p {
+            font-size: 14px;
+            margin: 5px 0 0;
+            color: #555;
+        }
+
+        /* Email Content */
+        .email-content {
+            flex-grow: 1;
+            padding: 20px;
+            display: none; /* Initially hidden */
+        }
+    </style>
 </head>
 <body>
-    
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Folders</h2>
+        <ul>
+            <li onclick="showEmails('inbox')">Inbox</li>
+            <li onclick="showEmails('sent')">Sent</li>
+            <li onclick="showEmails('drafts')">Drafts</li>
+            <li onclick="showEmails('spam')">Spam</li>
+            <li onclick="showEmails('trash')">Trash</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <h1>Email</h1>
+            <div class="account">Logged in as: j.graves2@bastion.com</div>
+        </div>
+
+        <!-- Email List -->
+        <div class="email-list" id="email-list">
+            <!-- Fake Emails will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Email Content -->
+        <div class="email-content" id="email-content">
+            <h3 id="email-subject"></h3>
+            <p id="email-body"></p>
+        </div>
+    </div>
+
+    <script>
+        // Fake email data for each folder
+        const emailData = {
+            inbox: [
+                { subject: "Welcome to Your Email", body: "This is a sample email content preview..." },
+                { subject: "Meeting Reminder", body: "Don't forget about the meeting tomorrow at 10 AM in the conference room." }
+            ],
+            sent: [
+                { subject: "Project Update", body: "The project is on track. We will have the next meeting on Friday to discuss further steps." }
+            ],
+            drafts: [
+                { subject: "Draft: New Project", body: "Here are some ideas for the new project we discussed..." }
+            ],
+            spam: [
+                { subject: "Congratulations! You won!", body: "You have been selected as a winner in our contest! Click here to claim your prize." }
+            ],
+            trash: [
+                { subject: "Old Meeting Notes", body: "Here are the notes from the last meeting. Feel free to review them." }
+            ]
+        };
+
+        // Show emails for the selected folder
+        function showEmails(folder) {
+            const emailList = document.getElementById('email-list');
+            const emailContent = document.getElementById('email-content');
+
+            // Clear current email list
+            emailList.innerHTML = '';
+
+            // Populate email list
+            emailData[folder].forEach((email, index) => {
+                const emailItem = document.createElement('div');
+                emailItem.classList.add('email-item');
+                emailItem.innerHTML = `<h3>${email.subject}</h3><p>${email.body.substring(0, 50)}...</p>`;
+                emailItem.onclick = () => showEmailContent(folder, index);
+                emailList.appendChild(emailItem);
+            });
+
+            // Show email list and hide email content
+            emailList.style.display = 'block';
+            emailContent.style.display = 'none';
+        }
+
+        // Show content of the selected email
+        function showEmailContent(folder, index) {
+            const email = emailData[folder][index];
+            const emailList = document.getElementById('email-list');
+            const emailContent = document.getElementById('email-content');
+
+            document.getElementById('email-subject').textContent = email.subject;
+            document.getElementById('email-body').textContent = email.body;
+
+            // Show email content and hide email list
+            emailList.style.display = 'none';
+            emailContent.style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>

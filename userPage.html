@@ -135,17 +135,20 @@
         let username = document.getElementById('username' + user.slice(-1)).value;
         let password = document.getElementById('password' + user.slice(-1)).value;
 
-        if (
-            (user === 'user1' && username === 'j.graves2' && password === 'bastion123') ||
-            (user === 'user2' && username === 'a.richardson1' && password === 'mittens10') ||
-            (user === 'user3' && username === 's.carters7' && password === '123456')
-        ) {
+        if (user === 'user1' && username === 'j.graves2' && password === 'bastion123') {
             alert('Login successful for ' + username + '!');
-            showNewPage();
+            window.location.href = 'jaime.html';
+        } else if (user === 'user2' && username === 'a.richardson1' && password === 'mittens10') {
+            alert('Login successful for ' + username + '!');
+            window.location.href = 'alex.html';
+        } else if (user === 'user3' && username === 's.carters7' && password === '123456') {
+            alert('Login successful for ' + username + '!');
+            window.location.href = 'sam.html';
         } else {
             alert('Incorrect Username or Password');
         }
     }
+
 
     function validateSecurity(user) {
         let secq1 = document.getElementById('secq1-' + user).value.toLowerCase();
@@ -154,25 +157,18 @@
 
         if (user === 'user1' && secq1 === 'subaru impreza' && secq2 === 'kobe' && secq3 === 'cleveland') {
             alert('Here is your temporary password: bastion123');
-            showNewPage();
+            window.location.href = 'jaime.html';
         } else if (user === 'user2' && secq1 === 'honda crv' && secq2 === 'castle street' && secq3 === 'london') {
-            alert('Security questions answered correctly! Here is your password: mittens10')
-            showNewPage();
+            alert('Security questions answered correctly! Here is your password: mittens10');
+            window.location.href = 'alex.html';
         } else if (user == 'user3' && secq1 === 'chevy cruze' && secq2 === 'ryan hansen' && secq3 === 'seattle') {
-            alert('Security questions answered correctly! Here is your password: 123456')
-            showNewPage();
-        }
-        
-        else {
+            alert('Security questions answered correctly! Here is your password: 123456');
+            window.location.href = 'sam.html';
+        } else {
             alert('Incorrect Answers');
         }
     }
-
-    function showNewPage() {
-        /*document.querySelectorAll('.login, .security').forEach(el => el.style.display = 'none');
-        document.getElementById('new-page').style.display = 'block';*/
-        window.location.href = 'e-mail.html';
-    }
+    
 </script>
 
 </body>

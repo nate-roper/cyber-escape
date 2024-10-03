@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 50px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .app-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .app-icon {
+            width: 150px;
+            height: 150px;
+            background-color: #87CEEB;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-icon:hover {
+            background-color: #4682B4;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-icon img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .app-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome to Your Home Page</h1>
+
+        <!-- App Icons -->
+        <div class="app-container">
+            <!-- Fake Email Icon -->
+            <a href="fakeEmail.html" target="_blank" class="app-icon">
+                <img src="https://img.icons8.com/fluent/60/000000/email-open.png" alt="Email Icon">
+                <span class="app-title">Fake Email</span>
+            </a>
+
+            <!-- Fake Social Media Icon -->
+            <a href="fakeSocialMedia.html" target="_blank" class="app-icon">
+                <img src="https://img.icons8.com/fluent/60/000000/facebook-new.png" alt="Social Media Icon">
+                <span class="app-title">Fake Social Media</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

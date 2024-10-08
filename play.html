@@ -53,6 +53,45 @@
       height: 50vh;
       flex-direction: column;
     }
+
+
+.obj {
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  margin-top: 25px;
+  margin-bottom: 100px;
+  left: 50%;
+  top: 50%;
+  position: relative;
+  background: #f53d3d;
+  border-radius: 100px;
+  box-shadow: inset -2px 2px 2px 0px rgba(255, 97, 97, 1), 
+              inset 2px -2px 2px 0px rgba(138, 27, 27, 0.3), 
+              inset 0px 0px 40px 15px rgba(222, 36, 36, 1), 
+              1px 1px 0 0 #b91f1f, 
+              2px 2px 0 0 #9f1b1b, 
+              3px 3px 0 0 #861717, 
+              4px 4px 0 0 #6c1212, 
+              5px 5px 0 0 #520e0e, 
+              6px 6px 0 0 #390a0a, 
+              7px 7px 0 0 #1f0505, 
+              8px 8px 0 0 #150303, 
+              9px 9px 0 0 #0b0101, 
+              10px 10px 0 0 #050000, 
+              11px 11px 0 0 #000000;
+  transition: all 0.3s ease;
+}
+
+.obj:active {
+  background: #ff5858;
+  box-shadow: inset -2px 2px 2px 0px rgba(255, 97, 97, 1), 
+              inset 2px -2px 2px 0px rgba(138, 27, 27, 0.3), 
+              inset 0px 0px 40px 15px rgba(222, 36, 36, 1), 
+              1px 1px 0 0 #b91f1f, 
+              1px 1px 0 0 #9f1b1b;
+}
+
   </style>
 </head>
 
@@ -64,7 +103,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
           <a class="navbar-brand" href="index.html">
             <span>
-              CYBER ESCAPE
+              BASTION
             </span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,12 +154,17 @@
           Start the Challenge
         </h2>
         <p>
-          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation
+          Press the button below to begin your cyber escape room experience. 
         </p>
-        <div class="container centered-container">
-          <a href="userPage.html" target="_blank" class="play-now-button">Play Now</a>
-        </div>
+        <div class="obj"></div>
+        <p>
+          WARNING: Ensure you have prepared the physical resources before starting the challenge.
+        </p>
+        <script type="text/javascript">
+          document.querySelector('.obj').addEventListener('click', function() {
+            window.location.href = 'userPage.html';
+          });
+        </script>
   </section>
 
   <!-- info section -->

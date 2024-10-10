@@ -6,69 +6,94 @@
     <title>Mock Desktop</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+            background: url('images/login.jpg') no-repeat center center fixed;
+            background-size: cover;
             text-align: center;
-            padding-top: 50px;
+            color: #fff;
+            margin: 0;
+            padding: 0;
         }
         .desktop {
             display: flex;
             justify-content: center;
             gap: 30px;
+            margin-top: 100px;
         }
         .user {
             width: 150px;
             height: 150px;
-            background-color: #87CEEB;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 50%;
+            overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
+            background-color: transparent;
         }
-        .user:hover {
-            background-color: #4682B4;
+        .user img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .user-name {
-            color: white;
+            margin-top: 10px;
             font-size: 20px;
+            color: #fff;
         }
         .login, .security {
             display: none;
             margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .new-page {
-            display: none;
-            font-size: 24px;
-            color: green;
-        }
+
         input {
-            margin: 5px;
-            padding: 8px;
-            width: 200px;
+            margin: 10px 0;
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
         }
         button {
-            padding: 8px 12px;
+            padding: 10px 20px;
             cursor: pointer;
+            border-radius: 5px;
+            background-color: #0078D7;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005A9E;
         }
     </style>
+    
 </head>
 <body>
 
-<h1>Mock Desktop</h1>
+<h1>BASTION Sign-In</h1>
 
 <div class="desktop">
     <div class="user" onclick="openLogin('user1')">
+        <img src="images/jaimePFP.jpeg" alt="Jaime">
         <div class="user-name">Jaime</div>
     </div>
     <div class="user" onclick="openLogin('user2')">
+        <img src="images/alexPFP.jpeg" alt="Alex">
         <div class="user-name">Alex</div>
     </div>
     <div class="user" onclick="openLogin('user3')">
+        <img src="images/samPFP.jpeg" alt="Sam">
         <div class="user-name">Sam</div>
     </div>
 </div>
+
 
 <div id="login-user1" class="login">
     <h2>Jaime - Sign In</h2>

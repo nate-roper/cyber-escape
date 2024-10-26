@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@
             width: 250px;
             background-color: #f1f1f1;
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h2 {
@@ -50,7 +51,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
@@ -75,7 +76,8 @@
             overflow-y: auto;
             background-color: #f9f9f9;
             padding: 20px;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
 
         .email-item {
@@ -83,7 +85,7 @@
             margin-bottom: 10px;
             background-color: white;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: background 0.3s;
         }
@@ -107,10 +109,12 @@
         .email-content {
             flex-grow: 1;
             padding: 20px;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
     </style>
 </head>
+
 <body>
 
     <!-- Sidebar -->
@@ -149,21 +153,28 @@
         // Fake email data for each folder
         const emailData = {
             inbox: [
-                { subject: "Welcome to Your Email", body: "This is a sample email content preview..." },
-                { subject: "Meeting Reminder", body: "Don't forget about the meeting tomorrow at 10 AM in the conference room." }
+                {
+                    subject: "Attendance for Investor Meeting After Earnings Call",
+                    body: "Hi Alex,<br><br>I hope you're doing well. I wanted to check in regarding the investor meeting scheduled right after the upcoming earnings call on [insert date]. Will you be available to join the meeting?<br><br>It would be great to have you there to provide insights and help address any questions that may arise from the investors. Let me know if you’ll be able to attend or if there’s anything we need to coordinate in advance.<br><br>Looking forward to hearing from you. Please let me know if there’s anything specific you’d like to cover, or if you need any additional information ahead of time.<br><br>Leah<br>BASTION CORP"
+                },
+                { subject: "Re: Project Collaboration", body: "Hey Alex,<br><br>Thanks for reaching out! Yeah, I remember us mentioning it, but I don’t think I got a clear sense of the scope either. Definitely open to exploring how we can collaborate though.<br><br>How about we start with a quick chat to clarify what’s needed? Maybe we can figure out the structure as we go. I’m free Wednesday this week if that works for you.<br><br>Looking forward to hearing more.<br><br>Best,<br>Werner" },
+                { subject: "Re: Project Collaboration", body: "Hey Werner,<br><br>Sounds like a plan! Let’s aim for 10:30. I’ll send over a meeting invite.<br><br>In the meantime, I’ll try to gather more info on the project to give us some direction. Looking forward to figuring this out with you.<br><br>Talk soon,<br>Alex Richardson" }
             ],
             sent: [
-                { subject: "Project Update", body: "The project is on track. We will have the next meeting on Friday to discuss further steps." }
+                { subject: "Project Collaboration", body: "Hi Werner,<br><br>Hope you're doing well. I wanted to touch base about that project we briefly discussed last week. It's still in the early stages, but I think there could be a lot of opportunities for collaboration between our teams.<br><br>I’m not entirely clear on all the specifics yet, but it seems like it could be a pretty dynamic initiative with room for input from both of us. Maybe we could set up some time to chat about how we can move forward together on this?<br><br>Let me know what your schedule looks like.<br><br>Best,<br>Alex Richardson" },
+                {
+                    subject: "Time Off Request (October 10-14)",
+                    body: "Hi Jennifer,<br><br>I hope all is good! I wanted to check if it would be okay for me to take the week of October 10th off (from Monday, October 10th to Friday, October 14th) for my birthday. I’ll make sure everything is in order before I go, and I’m happy to coordinate with the team so nothing falls through the cracks.<br><br>Let me know if that works for you!<br><br>Thanks,<br>Alex Richardson"
+                }
             ],
-            drafts: [
-                { subject: "Draft: New Project", body: "Here are some ideas for the new project we discussed..." }
-            ],
+            drafts: [],
             spam: [
-                { subject: "Congratulations! You won!", body: "You have been selected as a winner in our contest! Click here to claim your prize." }
+                {
+                    subject: "Alex, Save BIG on Your Car Insurance Today!",
+                    body: "Hi Alex,<br><br>Are you paying too much for car insurance? You're not alone! But the good news is, we’ve got a solution just for you.<br><br><strong>Get Insured Now and Save Up to 50%!</strong><br>No hidden fees<br>Instant coverage<br>Affordable monthly payments<br>Easy online quotes in minutes!<br><br>Whether you’re looking for basic coverage or premium plans, we’ve got options tailored for drivers like you. Why wait? Start saving NOW!<br><br><a href='#'>[Get My Free Quote Now]</a><br><br>Don’t miss out—your savings are just a click away!<br><br>Drive safe!<br><br>P.S. Alex, it’s time to stop overpaying. Let us help you keep more money in your pocket!"
+                }
             ],
-            trash: [
-                { subject: "Old Meeting Notes", body: "Here are the notes from the last meeting. Feel free to review them." }
-            ]
+            trash: []
         };
 
         // Show emails for the selected folder
@@ -188,14 +199,14 @@
             emailContent.style.display = 'none';
         }
 
-        // Show content of the selected email
+        // Show content of the selected email with line breaks
         function showEmailContent(folder, index) {
             const email = emailData[folder][index];
             const emailList = document.getElementById('email-list');
             const emailContent = document.getElementById('email-content');
 
             document.getElementById('email-subject').textContent = email.subject;
-            document.getElementById('email-body').textContent = email.body;
+            document.getElementById('email-body').innerHTML = email.body; // Using innerHTML to support <br> tags for line breaks
 
             // Show email content and hide email list
             emailList.style.display = 'none';
@@ -204,4 +215,5 @@
     </script>
 
 </body>
+
 </html>

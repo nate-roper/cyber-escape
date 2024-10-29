@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Explorer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .folder-list {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .folder-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #444;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .folder-list li:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            width: 80%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .file-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .file-table th, .file-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .file-table th {
+            background-color: #f4f4f4;
+        }
+
+        .file-table tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Folders</h2>
+    <ul class="folder-list">
+        <li onclick="showFiles('Documents')">Documents</li>
+        <li onclick="showFiles('Pictures')">Pictures</li>
+        <li onclick="showFiles('Music')">Music</li>
+        <li onclick="showFiles('Videos')">Videos</li>
+        <li onclick="showFiles('Downloads')">Downloads</li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <h2 id="folderTitle">Documents</h2>
+    <table class="file-table">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Type</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+        <tbody id="fileList">
+            <!-- Populated by JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Mock data for file lists in each folder
+    const files = {
+        'Documents': [
+            { name: 'resume.docx', type: 'Document', size: '56 KB' },
+            { name: 'project.pdf', type: 'PDF', size: '1.2 MB' },
+            { name: 'notes.txt', type: 'Text', size: '4 KB' }
+        ],
+        'Pictures': [
+            { name: 'vacation.jpg', type: 'Image', size: '2.4 MB' },
+            { name: 'profile.png', type: 'Image', size: '1.1 MB' }
+        ],
+        'Music': [
+            { name: 'song.mp3', type: 'Audio', size: '3.5 MB' }
+        ],
+        'Videos': [
+            { name: 'movie.mp4', type: 'Video', size: '700 MB' }
+        ],
+        'Downloads': [
+            { name: 'installer.exe', type: 'Application', size: '25 MB' },
+            { name: 'ebook.epub', type: 'eBook', size: '1 MB' }
+        ]
+    };
+
+    // Function to display files for a selected folder
+    function showFiles(folderName) {
+        document.getElementById('folderTitle').textContent = folderName;
+        const fileList = document.getElementById('fileList');
+        fileList.innerHTML = ''; // Clear previous entries
+
+        files[folderName].forEach(file => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${file.name}</td>
+                <td>${file.type}</td>
+                <td>${file.size}</td>
+            `;
+            fileList.appendChild(row);
+        });
+    }
+
+    // Initialize with Documents folder
+    showFiles('Documents');
+</script>
+
+</body>
+</html>

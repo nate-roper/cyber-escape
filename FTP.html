@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTP Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .ftp-container {
+            width: 60%;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .ftp-header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .ftp-inputs input, .ftp-inputs button {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .file-list {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .file-column {
+            width: 45%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f0f0f0;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ftp-container">
+    <div class="ftp-header">FTP Server</div>
+    <div class="ftp-inputs">
+        <input type="text" id="ftpHost" placeholder="Host">
+        <input type="text" id="ftpUsername" placeholder="Username">
+        <input type="password" id="ftpPassword" placeholder="Password">
+        <button onclick="connectToFTP()">Connect</button>
+    </div>
+
+    <div class="file-list">
+        <div class="file-column">
+            <h3>Local Files</h3>
+            <ul>
+                <li>local_file1.txt</li>
+                <li>local_file2.jpg</li>
+                <li>local_file3.pdf</li>
+            </ul>
+        </div>
+        <div class="file-column">
+            <h3>Server Files</h3>
+            <ul id="serverFileList">
+                <!-- Populated on connect -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function connectToFTP() {
+        const host = document.getElementById('ftpHost').value;
+        const username = document.getElementById('ftpUsername').value;
+        const password = document.getElementById('ftpPassword').value;
+
+        if (host && username && password) {
+            // Mock file list from server
+            const serverFiles = ['server_file1.txt', 'server_file2.jpg', 'server_file3.pdf'];
+
+            // Populate server files on the right side
+            const serverFileList = document.getElementById('serverFileList');
+            serverFileList.innerHTML = ''; // Clear previous entries
+            serverFiles.forEach(file => {
+                const li = document.createElement('li');
+                li.textContent = file;
+                serverFileList.appendChild(li);
+            });
+        } else {
+            alert("Please enter host, username, and password.");
+        }
+    }
+</script>
+
+</body>
+</html>

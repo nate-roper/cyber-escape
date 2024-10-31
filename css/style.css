@@ -76,6 +76,12 @@ body {
   background-size: cover;
 }
 
+.hero_area_video {
+  height: 100vh;
+  background-color: #000000;
+  background-size: cover;
+}
+
 .sub_page .hero_area {
   height: auto;
 }

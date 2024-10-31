@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Play</title>
+
+  <!-- slider stylesheet -->
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    body {
+        background-color: black;
+    }
+
+    #videoPlayer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 80vw; /* Adjust based on video size */
+        height: auto;
+        transition: opacity 3s ease; /* Adjust duration as needed */
+    }
+
+    #videoPlayer.show {
+        opacity: 1;
+    }
+
+    #fadeOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 1;
+        transition: opacity 3s ease;
+        z-index: 10;
+    }
+
+    #fadeOverlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        flex-direction: column;
+    }
+
+    .obj {
+        width: 200px;
+        height: 200px;
+        margin-left: -100px;
+        margin-top: 25px;
+        margin-bottom: 100px;
+        left: 50%;
+        top: 50%;
+        position: relative;
+        background: #f53d3d;
+        border-radius: 100px;
+        box-shadow: inset -2px 2px 2px 0px rgba(255, 97, 97, 1), 
+                    inset 2px -2px 2px 0px rgba(138, 27, 27, 0.3), 
+                    inset 0px 0px 40px 15px rgba(222, 36, 36, 1), 
+                    1px 1px 0 0 #b91f1f, 
+                    2px 2px 0 0 #9f1b1b, 
+                    3px 3px 0 0 #861717, 
+                    4px 4px 0 0 #6c1212, 
+                    5px 5px 0 0 #520e0e, 
+                    6px 6px 0 0 #390a0a, 
+                    7px 7px 0 0 #1f0505, 
+                    8px 8px 0 0 #150303, 
+                    9px 9px 0 0 #0b0101, 
+                    10px 10px 0 0 #050000, 
+                    11px 11px 0 0 #000000;
+        transition: all 0.3s ease;
+    }
+
+    .obj:active {
+      background: #ff5858;
+      box-shadow: inset -2px 2px 2px 0px rgba(255, 97, 97, 1), 
+                  inset 2px -2px 2px 0px rgba(138, 27, 27, 0.3), 
+                  inset 0px 0px 40px 15px rgba(222, 36, 36, 1), 
+                  1px 1px 0 0 #b91f1f, 
+                  1px 1px 0 0 #9f1b1b;
+    }
+
+  </style>
+</head>
+
+<body>
+    <div class="hero_area_video">
+        <!-- header section strats -->
+        <header class="header_section">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+              <a class="navbar-brand" href="index.html">
+                <span>
+                  BASTION
+                </span>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+    
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                  <ul class="navbar-nav  ">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="about.html"> About </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="resources.html"> Resources </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="play.html"> Play </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contact.html">Contact us</a>
+                    </li>
+                  </ul>
+                  <div class="user_option">
+                    <a href="">
+                      <img src="images/user.png" alt="">
+                    </a>
+                    <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                      <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </header>
+        <!-- end header section -->
+    </div>
+
+    <div id="fadeOverlay"></div>
+    <video id="videoPlayer" src="Videos/test.mp4" preload="auto" playsinline></video>
+
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const fadeOverlay = document.getElementById('fadeOverlay');
+
+        // Function to start video playback with fade-in and auto-unmute
+        function startVideo() {
+            videoPlayer.muted = true; // Start muted to satisfy autoplay policies
+            fadeOverlay.classList.add('hidden'); // Fade out overlay to reveal video
+            videoPlayer.classList.add('show'); // Fade in video
+            videoPlayer.play().then(() => {
+                // Unmute after autoplay starts, if supported
+                videoPlayer.muted = false;
+            }).catch(error => {
+                console.log("Autoplay blocked: ", error);
+                // Optionally: Show controls so the user can play manually
+                //videoPlayer.controls = true;
+            });
+
+            // Fade out and redirect after the video ends
+            videoPlayer.onended = () => {
+                videoPlayer.classList.remove('show'); // Fade out video
+                fadeOverlay.classList.remove('hidden'); // Show overlay for fade-out effect
+
+                setTimeout(() => {
+                window.location.href = 'userPage.html'; // Redirect after fade-out
+                }, 3000); // Match fade-out duration
+            };
+        }
+
+        // Start video sequence on page load
+        window.addEventListener('load', startVideo);
+    </script>
+
+</body>
+</html>

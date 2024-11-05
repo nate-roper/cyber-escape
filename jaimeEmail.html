@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@
             width: 250px;
             background-color: #f1f1f1;
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h2 {
@@ -50,7 +51,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
@@ -75,7 +76,8 @@
             overflow-y: auto;
             background-color: #f9f9f9;
             padding: 20px;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
 
         .email-item {
@@ -83,7 +85,7 @@
             margin-bottom: 10px;
             background-color: white;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: background 0.3s;
         }
@@ -107,10 +109,12 @@
         .email-content {
             flex-grow: 1;
             padding: 20px;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
     </style>
 </head>
+
 <body>
 
     <!-- Sidebar -->
@@ -149,8 +153,19 @@
         // Fake email data for each folder
         const emailData = {
             inbox: [
-                { subject: "Welcome to Your Email", body: "This is a sample email content preview..." },
-                { subject: "Meeting Reminder", body: "Don't forget about the meeting tomorrow at 10 AM in the conference room." }
+            {
+        subject: "Alert: Multiple Large Deposits Detected in Your Account",
+        body: `
+            Dear Jaime,<br><br>
+            We are reaching out to notify you of recent unusual activity in your account. Our system has detected multiple large deposits that have been made to your account.<br><br>
+            To ensure the security of your funds, we kindly ask that you review your recent account activity to verify these transactions. If these deposits are authorized and expected, no further action is needed. However, if you do not recognize these deposits, please contact our support team immediately to investigate further.<br><br>
+            At CashPal, we take your account security seriously and want to ensure your funds are safe.<br><br>
+            For assistance, you can reach our customer support or by replying to this email.<br><br>
+            Thank you for your attention to this matter.<br><br>
+            Best regards,<br>
+            CashPal
+        `
+    }
             ],
             sent: [
                 { subject: "Project Update", body: "The project is on track. We will have the next meeting on Friday to discuss further steps." }
@@ -204,4 +219,5 @@
     </script>
 
 </body>
+
 </html>

@@ -153,22 +153,118 @@
         // Fake email data for each folder
         const emailData = {
             inbox: [
-            {
-        subject: "Alert: Multiple Large Deposits Detected in Your Account",
-        body: `
-            Dear Jaime,<br><br>
-            We are reaching out to notify you of recent unusual activity in your account. Our system has detected multiple large deposits that have been made to your account.<br><br>
-            To ensure the security of your funds, we kindly ask that you review your recent account activity to verify these transactions. If these deposits are authorized and expected, no further action is needed. However, if you do not recognize these deposits, please contact our support team immediately to investigate further.<br><br>
-            At CashPal, we take your account security seriously and want to ensure your funds are safe.<br><br>
-            For assistance, you can reach our customer support or by replying to this email.<br><br>
-            Thank you for your attention to this matter.<br><br>
-            Best regards,<br>
-            CashPal
+                {
+                    subject: "Alert: Multiple Large Deposits Detected in Your Account",
+                    body: `
+            <p>Dear Jaime,</p>
+            <p>We are reaching out to notify you of recent unusual activity in your account. Our system has detected multiple large deposits that have been made to your account.</p>
+            <p>To ensure the security of your funds, we kindly ask that you review your recent account activity to verify these transactions. If these deposits are authorized and expected, no further action is needed. However, if you do not recognize these deposits, please contact our support team immediately to investigate further.</p>
+            <p>At CashPal, we take your account security seriously and want to ensure your funds are safe.</p>
+            <p>For assistance, you can reach our customer support or by replying to this email.</p>
+            <p>Thank you for your attention to this matter.</p>
+            <p>Best regards,<br>CashPal</p>
         `
-    }
+                },
+                {
+                    subject: "A New Chapter Awaits You at Vanguard",
+                    body: `
+            <p>Dear Jaime,</p>
+            <p>I hope this message finds you well. I’m Melissa, from Vanguard’s strategic team, and we’ve been observing your work at BASTION closely. Your expertise and insight are exactly what we’re looking for as we move into our next phase of growth.</p>
+            <p>I don’t need to tell you how competitive this industry is. What I can tell you is that we recognize talent when we see it—and we know how to reward it. The position we have in mind for you is more than just another role; it's a chance to be part of something bigger. At Vanguard, we’re not just shaping the future—we’re controlling it.</p>
+            <p>You’ve already proven yourself invaluable. Now, it’s time to take the next step. I’ll leave the details to your discretion, but rest assured, this opportunity won’t stay open for long. When you’re ready, reach out.</p>
+            <p>Looking forward to hearing from you, Jaime. The future is waiting.</p>
+            <p>Best,<br>Melissa<br>Talent Acquisition Specialist<br>Vanguard</p>
+        `
+                },
+                {
+                    subject: "Performance Review Follow-Up",
+                    body: `
+            <p>Hi Jaime,</p>
+            <p>I hope you're doing well. I wanted to follow up on the concerns raised during your recent performance review. We’ve noticed a continuing lack of improvement in key areas, particularly in project completion timelines and meeting deadlines, as discussed earlier this quarter.</p>
+            <p>It’s important for us to see noticeable progress moving forward. Please ensure that all deliverables for [insert project name] are completed by the end of this week. Failure to meet these expectations will require us to revisit this discussion and take appropriate steps.</p>
+            <p>Let me know if there are any obstacles preventing you from completing your work on time.</p>
+            <p>Best regards,<br>Leah</p>
+        `
+                },
+                {
+                    subject: "Re: Performance Review Follow-Up",
+                    body: `
+            <p>Jaime,</p>
+            <p>Glad to hear you're taking steps to address the issues. I expect full completion of the project by the deadline, as mentioned earlier. Please ensure that communication remains clear moving forward—additional delays will not be acceptable.</p>
+            <p>Best,<br>Leah</p>
+        `
+                },
+                {
+                    subject: "Reminder: Client Presentation on Friday",
+                    body: `
+            <p>Hi Jaime,</p>
+            <p>I hope you're doing well! This is Simon, one of the juniors on your dev team and I just wanted to send a quick reminder that we have the client presentation scheduled for this Friday at 10 AM. Could you please send me all the materials you wanted finalized and ready by Thursday afternoon?</p>
+            <p>Let me know if you need any more help with the prep or if there’s anything you’d like to go over before the presentation.</p>
+            <p>Looking forward to it!</p>
+            <p>Best,<br>Simon<br>BASTION CORP</p>
+        `
+                },
+                {
+                    subject: "Re: Quick Access Check",
+                    body: `
+            <p>Here you go. Use these to connect</p>
+            <p>Host: 73.118.209.254<br>
+            Username (MD5): ddf1d4b3aa7d445f4ceaaada6ecd026b<br>
+            Password (MD5): 7b4f86d3e54832dc7df197ed3c9d4172</p>
+            <p>Always Excited to work with you,<br>sreniram66</p>
+        `
+                }, {
+                    subject: "Re: Re: Quick Access Check",
+                    body: `
+            <p>Did you really just try to put in that text exactly… You have to un-hash it first… Just use this un-hash tool on this website. And before you ask, it’s MD5. Duh.</p>
+            <p><a href="https://md5hashing.net/hash">https://md5hashing.net/hash</a></p>
+            <p>sreniram66</p>
+        `
+                },
+                {
+                    subject: "Upcoming Team Restructuring",
+                    body: `
+            <p>Hi Jaime,</p>
+            <p>I wanted to inform you that we’re currently evaluating the team structure as we prepare for the next quarter. Given the ongoing issues with project delivery and your performance, your role is being considered as part of this assessment.</p>
+            <p>I suggest we meet later this week to discuss your future with the company and review your progress against the targets set during your last performance review.</p>
+            <p>Please coordinate with my assistant to find a time that works.</p>
+            <p>Best regards,<br>Susan<br>BASTION CORP</p>
+        `
+                }
+
             ],
             sent: [
-                { subject: "Project Update", body: "The project is on track. We will have the next meeting on Friday to discuss further steps." }
+                {
+                    subject: "Re: Performance Review Follow-Up",
+                    body: `
+            <p>Hi Leah,</p>
+            <p>Thank you for the reminder. I’ll make sure the project is completed by the deadline. I’m working on addressing the areas mentioned in the review and will keep you updated on my progress.</p>
+            <p>Best,<br>Jaime Graves</p>
+        `
+                },
+                {
+                    subject: "Re: Reminder: Client Presentation on Friday",
+                    body: `
+            <p>Hello Simon,</p>
+            <p>I will make sure to send you the docs and materials! Thank you for reaching out and I look forward to working with you and seeing your growth within the company.</p>
+            <p>Best,<br>Jaime Graves</p>
+        `
+                },
+                {
+                    subject: "Quick Access Check",
+                    body: `
+            <p>Hello,</p>
+            <p>I’m ready with what you asked for, but I’ll need the special access details to get it over there. Send it when you get a chance.</p>
+            <p>Regards,<br>Jaime Graves</p>
+        `
+                },
+                {
+                    subject: "Re: Re: Quick Access Check",
+                    body: `
+            <p>I’m putting all of those random numbers and letters in but it is not working still.</p>
+            <p>Jaime Graves</p>
+        `
+                }
             ],
             drafts: [
                 { subject: "Draft: New Project", body: "Here are some ideas for the new project we discussed..." }
@@ -204,18 +300,20 @@
         }
 
         // Show content of the selected email
+        // Show content of the selected email
         function showEmailContent(folder, index) {
             const email = emailData[folder][index];
             const emailList = document.getElementById('email-list');
             const emailContent = document.getElementById('email-content');
 
             document.getElementById('email-subject').textContent = email.subject;
-            document.getElementById('email-body').textContent = email.body;
+            document.getElementById('email-body').innerHTML = email.body; // Use innerHTML here
 
             // Show email content and hide email list
             emailList.style.display = 'none';
             emailContent.style.display = 'block';
         }
+
     </script>
 
 </body>

@@ -88,8 +88,8 @@
 <div class="sidebar">
     <h2>Folders</h2>
     <ul class="folder-list">
+        <li onclick="showFiles('Home')">Home</li>
         <li onclick="showFiles('Documents')">Documents</li>
-        <li onclick="showFiles('Pictures')">Pictures</li>
         <li onclick="showFiles('Music')">Music</li>
         <li onclick="showFiles('Videos')">Videos</li>
         <li onclick="showFiles('Downloads')">Downloads</li>
@@ -112,20 +112,44 @@
     </table>
 </div>
 
+<!-- Password Modal -->
+<div id="passwordModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div style="background:white; padding:20px; border-radius:5px; text-align:center;">
+        <h3>Enter Password</h3>
+        <input type="password" id="passwordInput">
+        <button onclick="checkPassword()">Submit</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<!-- PDF Viewer Modal -->
+<div id="pdfViewer" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div style="background:white; padding:20px; border-radius:5px; text-align:center;">
+        <h3>Fake PDF Document</h3>
+        <p>Click below to view PDF contents.</p>
+        <button onclick="showPdfContent()">View PDF Content</button>
+        <p id="pdfContent" style="display:none; margin-top:20px;">This is the content of the fake PDF.</p>
+        <button onclick="closePdfViewer()">Close</button>
+    </div>
+</div>
+
 <script>
     // Mock data for file lists in each folder
     const files = {
         'Documents': [
             { name: 'resume.docx', type: 'Document', size: '56 KB' },
             { name: 'project.pdf', type: 'PDF', size: '1.2 MB' },
-            { name: 'notes.txt', type: 'Text', size: '4 KB' }
+            { name: 'notes.txt', type: 'Text', size: '4 KB' },
+            { name: 'confidential.zip (password protected)', type: 'ZIP', size: '15 KB', password: '1234' },
+            { name: 'archive2024.zip (password protected)', type: 'ZIP', size: '25 KB', password: '5678' },
+            { name: 'financials.zip (password protected)', type: 'ZIP', size: '30 KB', password: 'abcd' }
         ],
-        'Pictures': [
-            { name: 'vacation.jpg', type: 'Image', size: '2.4 MB' },
+        'Home': [
+            { name: 'passwordReminders.txt', type: 'Text', size: '2 KB' },
             { name: 'profile.png', type: 'Image', size: '1.1 MB' }
         ],
         'Music': [
-            { name: 'song.mp3', type: 'Audio', size: '3.5 MB' }
+            { name: 'favoriteSong.mp3', type: 'Audio', size: '3.5 MB' }
         ],
         'Videos': [
             { name: 'movie.mp4', type: 'Video', size: '700 MB' }
@@ -136,6 +160,8 @@
         ]
     };
 
+    let selectedFile = null;
+
     // Function to display files for a selected folder
     function showFiles(folderName) {
         document.getElementById('folderTitle').textContent = folderName;
@@ -145,12 +171,43 @@
         files[folderName].forEach(file => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${file.name}</td>
+                <td onclick="openFile('${folderName}', '${file.name}')">${file.name}</td>
                 <td>${file.type}</td>
                 <td>${file.size}</td>
             `;
             fileList.appendChild(row);
         });
+    }
+
+    // Open file with password prompt for ZIP files
+    function openFile(folderName, fileName) {
+        selectedFile = files[folderName].find(file => file.name === fileName);
+        if (selectedFile && selectedFile.type === 'ZIP') {
+            document.getElementById('passwordModal').style.display = 'flex';
+        }
+    }
+
+    function checkPassword() {
+        const enteredPassword = document.getElementById('passwordInput').value;
+        if (selectedFile && enteredPassword === selectedFile.password) {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('pdfViewer').style.display = 'flex';
+        } else {
+            alert("Incorrect password!");
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('passwordModal').style.display = 'none';
+    }
+
+    function closePdfViewer() {
+        document.getElementById('pdfViewer').style.display = 'none';
+        document.getElementById('pdfContent').style.display = 'none';
+    }
+
+    function showPdfContent() {
+        document.getElementById('pdfContent').style.display = 'block';
     }
 
     // Initialize with Documents folder

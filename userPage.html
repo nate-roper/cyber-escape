@@ -99,24 +99,21 @@
     <h2>Jaime - Sign In</h2>
     <input type="text" id="username1" placeholder="Username"><br>
     <input type="password" id="password1" placeholder="Password"><br>
-    <button onclick="validateLogin('user1')">Login</button><br>
-    <button onclick="forgotPassword('user1')">Forgot Password</button>
+    <button onclick="validateLogin('user1')">Login</button>
 </div>
 
 <div id="login-user2" class="login">
     <h2>Alex - Sign In</h2>
     <input type="text" id="username2" placeholder="Username"><br>
     <input type="password" id="password2" placeholder="Password"><br>
-    <button onclick="validateLogin('user2')">Login</button><br>
-    <button onclick="forgotPassword('user2')">Forgot Password</button>
+    <button onclick="validateLogin('user2')">Login</button>
 </div>
 
 <div id="login-user3" class="login">
     <h2>Sam - Sign In</h2>
     <input type="text" id="username3" placeholder="Username"><br>
     <input type="password" id="password3" placeholder="Password"><br>
-    <button onclick="validateLogin('user3')">Login</button><br>
-    <button onclick="forgotPassword('user3')">Forgot Password</button>
+    <button onclick="validateLogin('user3')">Login</button>
 </div>
 
 <!-- Security Questions -->
@@ -150,47 +147,21 @@
         document.querySelectorAll('.login, .security').forEach(el => el.style.display = 'none');
         document.getElementById('login-' + user).style.display = 'block';
     }
-
-    function forgotPassword(user) {
-        document.querySelectorAll('.login').forEach(el => el.style.display = 'none');
-        document.getElementById('security-' + user).style.display = 'block';
-    }
-
     function validateLogin(user) {
         let username = document.getElementById('username' + user.slice(-1)).value;
         let password = document.getElementById('password' + user.slice(-1)).value;
 
-        if (user === 'user1' && username === 'j.graves2' && password === 'bastion123') {
+        if (user === 'user1' && username === 'j.graves2' && password === 'CavsFan123') {
             alert('Login successful for ' + username + '!');
             window.location.href = 'jaime.html';
-        } else if (user === 'user2' && username === 'a.richardson1' && password === 'mittens10') {
+        } else if (user === 'user2' && username === 'a.richardson1' && password === 'Mittens10') {
             alert('Login successful for ' + username + '!');
             window.location.href = 'alex.html';
-        } else if (user === 'user3' && username === 's.carters7' && password === '123456') {
+        } else if (user === 'user3' && username === 's.carters7' && password === 'smokedsalmon24') {
             alert('Login successful for ' + username + '!');
             window.location.href = 'sam.html';
         } else {
             alert('Incorrect Username or Password');
-        }
-    }
-
-
-    function validateSecurity(user) {
-        let secq1 = document.getElementById('secq1-' + user).value.toLowerCase();
-        let secq2 = document.getElementById('secq2-' + user).value.toLowerCase();
-        let secq3 = document.getElementById('secq3-' + user).value.toLowerCase();
-
-        if (user === 'user1' && secq1 === 'subaru impreza' && secq2 === 'kobe' && secq3 === 'cleveland') {
-            alert('Here is your temporary password: bastion123');
-            window.location.href = 'jaime.html';
-        } else if (user === 'user2' && secq1 === 'honda crv' && secq2 === 'castle street' && secq3 === 'london') {
-            alert('Security questions answered correctly! Here is your password: mittens10');
-            window.location.href = 'alex.html';
-        } else if (user == 'user3' && secq1 === 'chevy cruze' && secq2 === 'ryan hansen' && secq3 === 'seattle') {
-            alert('Security questions answered correctly! Here is your password: 123456');
-            window.location.href = 'sam.html';
-        } else {
-            alert('Incorrect Answers');
         }
     }
     

@@ -125,93 +125,150 @@
 <!-- PDF Viewer Modal -->
 <div id="pdfViewer" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
     <div style="background:white; padding:20px; border-radius:5px; text-align:center;">
-        <h3>Fake PDF Document</h3>
+        <h3>View PDF Document</h3>
         <p>Click below to view PDF contents.</p>
-        <button onclick="showPdfContent()">View PDF Content</button>
-        <p id="pdfContent" style="display:none; margin-top:20px;">This is the content of the fake PDF.</p>
+        <!-- Update buttons to call viewPdf with a PDF link -->
+        <button id="viewPdfButton1" onclick="viewPdf('pdf1')">View PDF Content 1</button>
+        <button id="viewPdfButton2" onclick="viewPdf('pdf2')">View PDF Content 2</button>
+        <button id="viewPdfButton3" onclick="viewPdf('pdf3')">View PDF Content 3</button>
         <button onclick="closePdfViewer()">Close</button>
     </div>
 </div>
 
+
 <script>
     // Mock data for file lists in each folder
-    const files = {
-        'Documents': [
-            { name: 'resume.docx', type: 'Document', size: '56 KB' },
-            { name: 'project.pdf', type: 'PDF', size: '1.2 MB' },
-            { name: 'notes.txt', type: 'Text', size: '4 KB' },
-            { name: 'confidential.zip (password protected)', type: 'ZIP', size: '15 KB', password: '1234' },
-            { name: 'archive2024.zip (password protected)', type: 'ZIP', size: '25 KB', password: '5678' },
-            { name: 'financials.zip (password protected)', type: 'ZIP', size: '30 KB', password: 'abcd' }
-        ],
-        'Home': [
-            { name: 'passwordReminders.txt', type: 'Text', size: '2 KB' },
-            { name: 'profile.png', type: 'Image', size: '1.1 MB' }
-        ],
-        'Music': [
-            { name: 'favoriteSong.mp3', type: 'Audio', size: '3.5 MB' }
-        ],
-        'Videos': [
-            { name: 'movie.mp4', type: 'Video', size: '700 MB' }
-        ],
-        'Downloads': [
-            { name: 'installer.exe', type: 'Application', size: '25 MB' },
-            { name: 'ebook.epub', type: 'eBook', size: '1 MB' }
-        ]
-    };
+const files = {
+    'Documents': [
+        { name: 'resume.docx', type: 'Document', size: '56 KB' },
+        { name: 'project.pdf', type: 'PDF', size: '1.2 MB' },
+        { name: 'notes.txt', type: 'Text', size: '4 KB' },
+        { name: 'clientDatabase.zip (password protected)', type: 'ZIP', size: '15 KB', password: 'hansen' },
+        { name: 'employeeInformation.zip (password protected)', type: 'ZIP', size: '25 KB', password: 'cruze' },
+        { name: 'productRoadmap.zip (password protected)', type: 'ZIP', size: '30 KB', password: 'seattle' }
+    ],
+    'Home': [
+        { name: 'passwordReminders.txt', type: 'Text', size: '2 KB' },
+        { name: 'profile.png', type: 'Image', size: '1.1 MB' }
+    ],
+    'Music': [
+        { name: 'favoriteSong.mp3', type: 'Audio', size: '3.5 MB' }
+    ],
+    'Videos': [
+        { name: 'movie.mp4', type: 'Video', size: '700 MB' }
+    ],
+    'Downloads': [
+        { name: 'installer.exe', type: 'Application', size: '25 MB' },
+        { name: 'ebook.epub', type: 'eBook', size: '1 MB' }
+    ]
+};
 
-    let selectedFile = null;
+let selectedFile = null;
+let viewedPdfs = new Set(); // Set to track viewed PDFs
 
-    // Function to display files for a selected folder
-    function showFiles(folderName) {
-        document.getElementById('folderTitle').textContent = folderName;
-        const fileList = document.getElementById('fileList');
-        fileList.innerHTML = ''; // Clear previous entries
+// Function to display files for a selected folder
+function showFiles(folderName) {
+    document.getElementById('folderTitle').textContent = folderName;
+    const fileList = document.getElementById('fileList');
+    fileList.innerHTML = ''; // Clear previous entries
 
-        files[folderName].forEach(file => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td onclick="openFile('${folderName}', '${file.name}')">${file.name}</td>
-                <td>${file.type}</td>
-                <td>${file.size}</td>
-            `;
-            fileList.appendChild(row);
-        });
+    files[folderName].forEach(file => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td onclick="openFile('${folderName}', '${file.name}')">${file.name}</td>
+            <td>${file.type}</td>
+            <td>${file.size}</td>
+        `;
+        fileList.appendChild(row);
+    });
+}
+
+// Open file with password prompt for ZIP files
+function openFile(folderName, fileName) {
+    selectedFile = files[folderName].find(file => file.name === fileName);
+    if (selectedFile && selectedFile.type === 'ZIP') {
+        document.getElementById('passwordModal').style.display = 'flex';
     }
+}
 
-    // Open file with password prompt for ZIP files
-    function openFile(folderName, fileName) {
-        selectedFile = files[folderName].find(file => file.name === fileName);
-        if (selectedFile && selectedFile.type === 'ZIP') {
+function openFile(folderName, fileName) {
+    selectedFile = files[folderName].find(file => file.name === fileName);
+    if (selectedFile) {
+        if (selectedFile.name === 'passwordReminders.txt') {
+            showPasswordReminders();
+        } else if (selectedFile.type === 'ZIP') {
             document.getElementById('passwordModal').style.display = 'flex';
         }
     }
+}
 
-    function checkPassword() {
-        const enteredPassword = document.getElementById('passwordInput').value;
-        if (selectedFile && enteredPassword === selectedFile.password) {
-            document.getElementById('passwordModal').style.display = 'none';
-            document.getElementById('pdfViewer').style.display = 'flex';
-        } else {
-            alert("Incorrect password!");
-        }
-    }
 
-    function closeModal() {
+function checkPassword() {
+    const enteredPassword = document.getElementById('passwordInput').value;
+    if (selectedFile && enteredPassword === selectedFile.password) {
         document.getElementById('passwordModal').style.display = 'none';
+        // Assuming a ZIP file will lead to a relevant PDF link, you could adapt this to open PDFs if needed.
+        alert("Correct password! File unlocked.");
+    } else {
+        alert("Incorrect password!");
+    }
+}
+
+function closeModal() {
+    document.getElementById('passwordModal').style.display = 'none';
+}
+
+// Function to open the appropriate PDF in a new window
+function viewPdf(pdfId) {
+    let pdfUrl = '';
+
+    // Set the correct URL based on the pdfId
+    switch (pdfId) {
+        case 'pdf1':
+            pdfUrl = 'Leaked Docs\clientDatabase.pdf'; // URL to PDF 1
+            break;
+        case 'pdf2':
+            pdfUrl = 'Leaked Docs\employeeInformation.pdf'; // URL to PDF 2
+            break;
+        case 'pdf3':
+            pdfUrl = 'Leaked Docs\productRoadmap.pdf'; // URL to PDF 3
+            break;
+        default:
+            alert('Invalid PDF ID');
+            return;
     }
 
-    function closePdfViewer() {
-        document.getElementById('pdfViewer').style.display = 'none';
-        document.getElementById('pdfContent').style.display = 'none';
-    }
+    // Open the PDF in a new window
+    window.open(pdfUrl, '_blank');
 
-    function showPdfContent() {
-        document.getElementById('pdfContent').style.display = 'block';
-    }
+    // Track viewed PDFs
+    viewedPdfs.add(pdfId);
 
-    // Initialize with Documents folder
-    showFiles('Documents');
+    // Check if all three PDFs have been viewed
+    if (viewedPdfs.size === 3) {
+        // Redirect to incidentReport.html after all 3 PDFs are viewed
+        window.location.href = 'incidentReport.html';
+    }
+}
+
+// Function to open password reminders text
+function showPasswordReminders() {
+    const passwordInfo = `(lowercase no spaces)
+clientDatabase.pdf -> my best friend's last name
+
+employeeInformation.pdf -> model of my first car
+
+productRoadmap.pdf -> my home city`;
+
+    // Display the content in a new window
+    const newWindow = window.open('', '_blank', 'width=400,height=300');
+    newWindow.document.write('<pre>' + passwordInfo + '</pre>');
+    newWindow.document.title = "Password Reminders";
+}
+
+
+// Initialize with Documents folder
+showFiles('Documents');
 </script>
 
 </body>

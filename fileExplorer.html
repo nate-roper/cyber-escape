@@ -189,6 +189,11 @@
 
     // Mock data for file lists in each folder
 const files = {
+    
+    'Home': [
+        { name: 'passwordReminders.txt', type: 'Text', size: '2 KB' },
+        { name: 'profile.png', type: 'Image', size: '1.1 MB' }
+    ],
     'Documents': [
         { name: 'resume.docx', type: 'Document', size: '56 KB' },
         { name: 'project.pdf', type: 'PDF', size: '1.2 MB' },
@@ -196,10 +201,6 @@ const files = {
         { name: 'clientDatabase.zip (password protected)', type: 'ZIP', size: '15 KB', password: 'hansen' },
         { name: 'employeeInformation.zip (password protected)', type: 'ZIP', size: '25 KB', password: 'cruze' },
         { name: 'productRoadmap.zip (password protected)', type: 'ZIP', size: '30 KB', password: 'seattle' }
-    ],
-    'Home': [
-        { name: 'passwordReminders.txt', type: 'Text', size: '2 KB' },
-        { name: 'profile.png', type: 'Image', size: '1.1 MB' }
     ],
     'Music': [
         { name: 'favoriteSong.mp3', type: 'Audio', size: '3.5 MB' }
@@ -257,31 +258,61 @@ function checkPassword() {
     const enteredPassword = document.getElementById('passwordInput').value;
     if (selectedFile && enteredPassword === selectedFile.password) {
         document.getElementById('passwordModal').style.display = 'none';
-        // Assuming a ZIP file will lead to a relevant PDF link, you could adapt this to open PDFs if needed.
-        alert("Correct password! File unlocked.");
+
+        // Open the appropriate PDF based on the file name
+        let pdfUrl = '';
+        switch (selectedFile.name) {
+            case 'clientDatabase.zip (password protected)':
+                pdfUrl = 'https://nate-roper.github.io/cyber-escape-site/Leaked Docs/clientDatabase.pdf';
+                break;
+            case 'employeeInformation.zip (password protected)':
+                pdfUrl = 'https://nate-roper.github.io/cyber-escape-site/Leaked Docs/employeeInformation.pdf';
+                break;
+            case 'productRoadmap.zip (password protected)':
+                pdfUrl = 'https://nate-roper.github.io/cyber-escape-site/Leaked Docs/productRoadmap.pdf';
+                break;
+            default:
+                alert('No matching PDF found.');
+                return;
+        }
+
+        // Open the PDF in a new window
+        window.open(pdfUrl, '_blank');
+
     } else {
         alert("Incorrect password!");
     }
 }
 
+
 function closeModal() {
     document.getElementById('passwordModal').style.display = 'none';
 }
 
-// Function to open the appropriate PDF in a new window
-function viewPdf(pdfId) {
+// Add an event listener to track when all PDF view buttons are clicked
+document.getElementById('viewPdfButton1').addEventListener('click', function() {
+    trackViewedPdf('pdf1');
+});
+document.getElementById('viewPdfButton2').addEventListener('click', function() {
+    trackViewedPdf('pdf2');
+});
+document.getElementById('viewPdfButton3').addEventListener('click', function() {
+    trackViewedPdf('pdf3');
+});
+
+function trackViewedPdf(pdfId) {
     let pdfUrl = '';
 
     // Set the correct URL based on the pdfId
     switch (pdfId) {
         case 'pdf1':
-            pdfUrl = 'Leaked Docs/clientDatabase.pdf'; // URL to PDF 1
+            pdfUrl = 'https://nate-roper.github.io/cyber-escape-site/Leaked Docs/clientDatabase.pdf';
             break;
         case 'pdf2':
-            pdfUrl = 'Leaked Docs/employeeInformation.pdf'; // URL to PDF 2
+            pdfUrl = 'https://nate-roper.github.io/cyber-escape-site/Leaked Docs/employeeInformation.pdf';
             break;
         case 'pdf3':
-            pdfUrl = 'Leaked Docs/productRoadmap.pdf'; // URL to PDF 3
+            pdfUrl = 'https://nate-roper.github.io/cyber-escape-site/Leaked Docs/productRoadmap.pdf';
             break;
         default:
             alert('Invalid PDF ID');
@@ -292,14 +323,19 @@ function viewPdf(pdfId) {
     window.open(pdfUrl, '_blank');
 
     // Track viewed PDFs
-    viewedPdfs.add(pdfId);
+    if (!viewedPdfs.has(pdfId)) {
+        viewedPdfs.add(pdfId);
+    }
 
     // Check if all three PDFs have been viewed
     if (viewedPdfs.size === 3) {
-        // Redirect to incidentReport.html after all 3 PDFs are viewed
-        window.location.href = 'incidentReport.html';
+    setTimeout(function() {
+    window.location.replace('incidentReport.html');
+    }, 1000); // Redirects to the incident report page
     }
 }
+
+
 
 // Function to open password reminders text
 function showPasswordReminders() {

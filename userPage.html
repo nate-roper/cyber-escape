@@ -3,16 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script>
-        fetch('globalTimer.js')
-            .then(response => {
-                if (!response.ok) throw new Error('File not found');
-                console.log('globalTimer.js is accessible');
-            })
-            .catch(error => console.error(error));
-    </script>
-
     <script src="globalTimer.js"></script>
     <title>Desktop</title>
     <style>
@@ -179,7 +169,7 @@
 </script>
 
 <div id="footer-bar">
-    <div id="timer" style="position: absolute; left: 10px; top: 0; color: black;"></div>
+    <div id="timer"></div>
     <div class="progress-container">
         <div id="progress-bar"></div>
     </div>
@@ -234,14 +224,7 @@
         z-index: 999;
     }
     #timer {
-    position: absolute;
-    left: 10px; /* Moves the timer to the left edge */
-    top: 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    line-height: 20px; /* Matches the height of the progress bar */
-    text-shadow: 1px 1px 2px black;
+        margin-left: 20px;
 }
     .progress-container {
         flex-grow: 1;

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="globalTimer.js"></script>
     <title>Email - Mock Desktop</title>
     <style>
         body {
@@ -333,43 +334,15 @@
 
     // Calculate progress based on the number of visited pages
     const totalPages = 5; // Adjust this number based on your total number of pages
-    const progress = (visitedPages.length / totalPages) * 100;
+    const progress = 50;
     document.getElementById('progress-bar').style.width = progress + '%';
-
-    // Timer functionality
-    let elapsedTime = parseInt(localStorage.getItem('elapsedTime'));
-
-    // Check if the timer is already running on another page
-    if (!localStorage.getItem('timerRunning')) {
-        localStorage.setItem('timerRunning', 'true');
-
-        // Start the timer only if it's not already running
-        setInterval(() => {
-            elapsedTime += 1;
-            localStorage.setItem('elapsedTime', elapsedTime);
-            document.getElementById('timer').textContent = `Time: ${formatTime(elapsedTime)}`;
-        }, 1000);
-    }
-
-    // Display the current time on page load
-    document.getElementById('timer').textContent = `Time: ${formatTime(elapsedTime)}`;
-
-    // Function to format the timer display
-    function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
-        const secs = (seconds % 60).toString().padStart(2, '0');
-        return `${mins}:${secs}`;
-    }
 
     // Function to navigate to the incident report page
     function finalizeReport() {
         window.location.href = 'incidentReport.html';
     }
 
-    // When the user leaves the page, release the timer lock
-    window.addEventListener('beforeunload', function () {
-        localStorage.removeItem('timerRunning');
-    });
+   
 </script>
 
 <style>

@@ -173,27 +173,22 @@
           Press the button below to begin your cyber escape room experience. 
         </p>
         <div class="obj"></div>
-        <div id="fadeOverlay"></div>
-        <p>
-          WARNING: Ensure you have prepared the physical resources before starting the challenge.
-        </p>
-        <script type="text/javascript">
-          document.querySelector('.obj').addEventListener('click', function() {
-            window.location.href = 'userPage.html';
-          });
-        </script>
-        <script type="text/javascript">
-          document.querySelector('.obj').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.getElementById('fadeOverlay').classList.add('fade');
+<div id="fadeOverlay"></div>
+<p>
+  WARNING: Ensure you have prepared the physical resources before starting the challenge.
+</p>
 
-            // Optional: Navigate to the next page after fade completes
-            setTimeout(() => {
-              window.location.href = 'video1.html';
-            }, 5000); // Match with the CSS transition duration
-          });
+<script type="text/javascript">
+  document.querySelector('.obj').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent any default behavior
+    document.getElementById('fadeOverlay').classList.add('fade');
 
-        </script>
+    // Navigate to the next page after the fade completes
+    setTimeout(() => {
+      window.location.href = 'video1.html'; // Update this to your desired URL
+    }, 5000); // Adjust duration as needed to match CSS transition
+  });
+</script>
         
   </section>
 

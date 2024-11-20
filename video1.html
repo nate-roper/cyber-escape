@@ -164,11 +164,50 @@
     </div>
 
     <div id="fadeOverlay"></div>
-    <video id="videoPlayer" src="Videos/test.mp4" preload="auto" playsinline></video>
+    <video id="videoPlayer" src="https://capstone2videos.s3.us-east-2.amazonaws.com/Bastion+video+1+(test).mp4" preload="auto" playsinline></video>
+
+    <div id="buttonContainer" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <button id="replayButton" style="padding: 10px 20px; margin: 5px; background: blue; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px;">Replay</button>
+        <button id="continueButton" style="padding: 10px 20px; margin: 5px; background: green; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px;">Continue</button>
+    </div>  
 
     <script>
         const videoPlayer = document.getElementById('videoPlayer');
         const fadeOverlay = document.getElementById('fadeOverlay');
+        const buttonContainer = document.createElement('div'); // Create container for buttons
+        buttonContainer.style.display = 'none';
+        buttonContainer.style.position = 'absolute';
+        buttonContainer.style.top = '50%';
+        buttonContainer.style.left = '50%';
+        buttonContainer.style.transform = 'translate(-50%, -50%)';
+        buttonContainer.style.textAlign = 'center';
+        document.body.appendChild(buttonContainer); // Append the container to the body
+
+        // Create and style replay button
+        const replayButton = document.createElement('button');
+        replayButton.innerText = 'Replay';
+        replayButton.style.padding = '10px 20px';
+        replayButton.style.margin = '5px';
+        replayButton.style.background = 'blue';
+        replayButton.style.color = 'white';
+        replayButton.style.border = 'none';
+        replayButton.style.cursor = 'pointer';
+        replayButton.style.borderRadius = '5px';
+        replayButton.style.fontSize = '16px';
+        buttonContainer.appendChild(replayButton); // Add replay button to container
+
+        // Create and style continue button
+        const continueButton = document.createElement('button');
+        continueButton.innerText = 'Continue';
+        continueButton.style.padding = '10px 20px';
+        continueButton.style.margin = '5px';
+        continueButton.style.background = 'green';
+        continueButton.style.color = 'white';
+        continueButton.style.border = 'none';
+        continueButton.style.cursor = 'pointer';
+        continueButton.style.borderRadius = '5px';
+        continueButton.style.fontSize = '16px';
+        buttonContainer.appendChild(continueButton); // Add continue button to container
 
         // Function to start video playback with fade-in and auto-unmute
         function startVideo() {
@@ -180,23 +219,45 @@
                 videoPlayer.muted = false;
             }).catch(error => {
                 console.log("Autoplay blocked: ", error);
-                // Optionally: Show controls so the user can play manually
-                //videoPlayer.controls = true;
             });
 
-            // Fade out and redirect after the video ends
+            // When the video ends, show the buttons
             videoPlayer.onended = () => {
                 videoPlayer.classList.remove('show'); // Fade out video
-                fadeOverlay.classList.remove('hidden'); // Show overlay for fade-out effect
-
-                setTimeout(() => {
-                window.location.href = 'userPage.html'; // Redirect after fade-out
-                }, 3000); // Match fade-out duration
+                buttonContainer.style.display = 'block'; // Show buttons
             };
         }
 
+        // Function to replay the video
+        replayButton.addEventListener('click', () => {
+            buttonContainer.style.display = 'none'; // Hide buttons
+
+            // Reset video state
+            videoPlayer.currentTime = 0;
+
+            // Reapply the fade-in effect
+            videoPlayer.classList.remove('show'); // Remove the class first to reset the state
+            setTimeout(() => {
+                videoPlayer.classList.add('show'); // Reapply the fade-in class after a brief delay
+            }, 10); // Short delay to allow class removal to take effect
+
+            // Play the video
+            videoPlayer.play();
+        });
+
+
+        // Function to continue to the next page
+        continueButton.addEventListener('click', () => {
+            buttonContainer.style.display = 'none'; // Hide buttons
+            fadeOverlay.classList.remove('hidden'); // Show overlay for fade-out effect
+            setTimeout(() => {
+                window.location.href = 'userPage.html'; // Redirect after fade-out
+            }, 1000); // Match fade-out duration
+        });
+
         // Start video sequence on page load
         window.addEventListener('load', startVideo);
+
     </script>
 
 </body>

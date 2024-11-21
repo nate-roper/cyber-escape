@@ -154,6 +154,52 @@
         const emailData = {
             inbox: [
                 {
+                    subject: "Project Brief: Shield Up Campaign",
+                    body: `
+            <p>Dear Sam,</p>
+            <p>Attached is the project brief for the "Shield Up" campaign, empowering clients against cyber threats. Please review the deliverables and timelines.</p>
+            <img src="images/Picture Email Sam Application.png" alt="Project Brief" style="width:100%; max-width:600px; border-radius:10px; margin-top:10px;">
+            <p>Feel free to reach out if you have any questions or concerns.</p>
+            <p>Best regards,<br>Project Management Team</p>
+        `
+                },
+                {
+                    subject: "Vanguard Application Form",
+                    body: `
+            <p>Dear Sam,</p>
+            <p>Attached is your Vanguard application form for the Chief Technology Officer position. Please ensure all information is correct and submit it by the deadline.</p>
+            <img src="images/Picture Email Sam Application.png" alt="Application Form" style="width:100%; max-width:600px; border-radius:10px; margin-top:10px;">
+            <p>Let us know if you need any assistance.</p>
+            <p>Best regards,<br>HR Team</p>
+        `
+                },
+                {
+                    subject: "Baseball Fundraiser Invitation",
+                    body: `
+            <p>Dear Sam,</p>
+            <p>You're invited to a Baseball Fundraiser featuring the Fierce Eagles vs. Red Hawks. Proceeds go to the UW Medical Center in Montlake, Seattle.</p>
+            <a href="images/Picture Email Baseball Fundraiser.pdf" target="_blank">Download the full invitation here</a>.
+            <p>Event Details:<br>
+            Date: June 26<br>
+            Gates Open: 4 PM<br>
+            Game Starts: 5 PM</p>
+            <p>We look forward to seeing you there!</p>
+            <p>Best regards,<br>Event Coordination Team</p>
+        `
+                },
+                {
+                    subject: "Grand Opening: Storm Kraken Koffee",
+                    body: `
+            <p>Dear Sam,</p>
+            <p>Join us for the grand opening of Storm Kraken Koffee! Enjoy our "Buy One Get One Free" promotion during our first week.</p>
+            <a href="images/Picture Email Cafe.pdf" target="_blank">View the flyer here</a>.
+            <p>Location:<br>
+            1254 Pinebrook Avenue, Seattle, WA 98104</p>
+            <p>Opening Hours: 7 AM - 2 PM Daily</p>
+            <p>Best regards,<br>Storm Kraken Koffee Team</p>
+        `
+                },
+                {
                     subject: "Join Us for the Annual BASTION Tech Carnival!",
                     body: `Hi Team,<br><br>
            Join us for a day of excitement, creativity, and friendly competition at the annual BASTION Tech Carnival! This event is packed with activities to help you unwind and connect with your colleagues. There’s something for everyone!<br><br>
@@ -436,9 +482,11 @@
         font-family: 'Segoe UI', sans-serif;
         z-index: 999;
     }
+
     #timer {
         margin-left: 20px;
     }
+
     .progress-container {
         flex-grow: 1;
         margin: 0 20px;
@@ -447,12 +495,14 @@
         border-radius: 10px;
         overflow: hidden;
     }
+
     #progress-bar {
         height: 100%;
         background-color: #0078D7;
         width: 0%;
         transition: width 0.3s;
     }
+
     #finalize-report {
         background-color: #0078D7;
         color: white;
@@ -462,8 +512,10 @@
         border-radius: 5px;
         transition: background-color 0.3s;
     }
+
     #finalize-report:hover {
         background-color: #005A9E;
     }
 </style>
+
 </html>

@@ -73,9 +73,9 @@
         <div class="file-column">
             <h3>Local Files</h3>
             <ul>
-                <li>local_file1.txt</li>
-                <li>local_file2.jpg</li>
-                <li>local_file3.pdf</li>
+                <li>jaimeResume.docx</li>
+                <li>profile.jpg</li>
+                <li>menu.pdf</li>
             </ul>
         </div>
         <div class="file-column">
@@ -89,26 +89,36 @@
 
 <script>
     function connectToFTP() {
-        const host = "73.118.209.254";
-        const username = "carters";
-        const password = "seahawks";
+    // Define correct credentials
+    const correctHost = "73.118.209.254";
+    const correctUsername = "carters";
+    const correctPassword = "seahawks";
 
-        if (host && username && password) {
-            // Mock file list from server
-            const serverFiles = ['server_file1.txt', 'server_file2.jpg', 'server_file3.pdf'];
+    // Get user inputs
+    const inputHost = document.getElementById('ftpHost').value;
+    const inputUsername = document.getElementById('ftpUsername').value;
+    const inputPassword = document.getElementById('ftpPassword').value;
 
-            // Populate server files on the right side
-            const serverFileList = document.getElementById('serverFileList');
-            serverFileList.innerHTML = ''; // Clear previous entries
-            serverFiles.forEach(file => {
-                const li = document.createElement('li');
-                li.textContent = file;
-                serverFileList.appendChild(li);
-            });
-        } else {
-            alert("Please enter host, username, and password.");
-        }
+    // Validate credentials
+    if (inputHost === correctHost && inputUsername === correctUsername && inputPassword === correctPassword) {
+        // Mock file list from server
+        const serverFiles = ['clientDatabase.zip', 'employeeInformation.zip', 'productRoadmap.zip'];
+
+        // Populate server files on the right side
+        const serverFileList = document.getElementById('serverFileList');
+        serverFileList.innerHTML = ''; // Clear previous entries
+        serverFiles.forEach(file => {
+            const li = document.createElement('li');
+            li.textContent = file;
+            serverFileList.appendChild(li);
+        });
+        alert("Connection Successful");
+    } else {
+        // Show an error message for incorrect credentials
+        alert("Connection Failed");
     }
+}
+
 </script>
 
 <div id="footer-bar">
@@ -143,7 +153,7 @@
 
     // Function to navigate to the incident report page
     function finalizeReport() {
-        window.location.href = 'incidentReport.html';
+        window.location.href = 'incidentReport.pdf';
     }
 
 </script>
